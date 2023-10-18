@@ -20,7 +20,7 @@ timezone: Asia/Shanghai
 
 title: Orange Blog # the main title
 
-tagline: 一条奋斗的咸鱼 # it will display as the sub-title
+tagline: 爱编程的橙子 # it will display as the sub-title
 
 description: >- # used by seo meta and the atom feed
   描述暂时不知道写点儿啥
