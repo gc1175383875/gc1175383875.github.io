@@ -63,6 +63,71 @@ html[data-theme="dark"] {
   @apply underline decoration-wavy decoration-2 underline-offset-8;
 }
 
+:root {
+  --sidebar-width: 200px;
+  --sidebar-width-large: 300px;
+}
+
+body.sidebar-layout {
+  transition: margin-left 0.3s ease;
+}
+
+@media (min-width: 850px) {
+  body.sidebar-layout {
+    margin-left: var(--sidebar-width);
+  }
+}
+
+@media (min-width: 1200px) {
+  body.sidebar-layout {
+    margin-left: var(--sidebar-width-large);
+  }
+}
+
+body.sidebar-open {
+  overflow: hidden;
+}
+
+body.sidebar-layout #sidebar-trigger {
+  display: none;
+}
+
+@media (max-width: 849px) {
+  body.sidebar-layout #sidebar-trigger {
+    display: flex;
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    z-index: 100;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+    cursor: pointer;
+    background: var(--background);
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+  }
+}
+
+#header-placeholder {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+@media (min-width: 640px) {
+  #header-placeholder {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+}
+
+@media (min-width: 850px) {
+  #header-placeholder {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
+}
+
 /* Source: https://piccalil.li/blog/a-more-modern-css-reset/ */
 /* Anything that has been anchored to should have extra scroll margin */
 :target {

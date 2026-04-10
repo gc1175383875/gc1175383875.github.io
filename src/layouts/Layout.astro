@@ -4,6 +4,11 @@ import { ClientRouter } from "astro:transitions";
 import { PUBLIC_GOOGLE_SITE_VERIFICATION } from "astro:env/client";
 import { SITE } from "@/config";
 import "@/styles/global.css";
+import Sidebar from "@/components/Sidebar.astro";
+import Header from "@/components/Header.astro";
+import IconMenuDeep from "@/assets/icons/IconMenuDeep.svg";
+
+const useSidebar = SITE.layoutStyle === "sidebar";
 
 type Props = {
   title?: string;
@@ -167,10 +172,44 @@ const structuredData = {
       })();
     </script>
   </head>
-  <body>
+  <body class:list={[{ "sidebar-layout": useSidebar }]}>
+    {useSidebar && <Sidebar />}
+    {useSidebar && (
+      <button id="sidebar-trigger" aria-label="Toggle Sidebar" aria-expanded="false">
+        <IconMenuDeep class="w-6 h-6" />
+      </button>
+    )}
+    {useSidebar && <div id="header-placeholder"></div>}
+    {!useSidebar && <Header />}
     <slot />
 
     <!-- Load full theme logic -->
     <script src="../scripts/theme.ts"></script>
+    
+    {useSidebar && (
+      <script>
+        function initSidebar() {
+          const sidebar = document.getElementById('sidebar');
+          const mask = document.getElementById('sidebar-mask');
+          const trigger = document.getElementById('sidebar-trigger');
+          
+          if (!sidebar || !mask || !trigger) return;
+          
+          function toggleSidebar() {
+            const isOpen = sidebar.classList.contains('open');
+            sidebar.classList.toggle('open');
+            mask.classList.toggle('show');
+            document.body.classList.toggle('sidebar-open');
+            trigger?.setAttribute('aria-expanded', String(!isOpen));
+          }
+          
+          trigger.addEventListener('click', toggleSidebar);
+          mask.addEventListener('click', toggleSidebar);
+        }
+        
+        initSidebar();
+        document.addEventListener('astro:after-swap', initSidebar);
+      </script>
+    )}
   </body>
 </html>
