@@ -1,24 +1,24 @@
 export const SITE = {
-  website: "https://gc1175383875.github.io/", // replace this with your deployed domain
-  author: "Sat Naing",
-  profile: "https://satnaing.dev/",
-  desc: "A minimal, responsive and SEO-friendly Astro blog theme.",
-  title: "AstroPaper",
+  website: "https://gc1175383875.github.io/",
+  author: "Orange Gan",
+  profile: "https://gc1175383875.github.io/",
+  desc: "爱编程的橙子",
+  title: "Orange Blog",
   ogImage: "astropaper-og.jpg",
   lightAndDarkMode: true,
   postPerIndex: 4,
   postPerPage: 4,
-  scheduledPostMargin: 15 * 60 * 1000, // 15 minutes
+  scheduledPostMargin: 15 * 60 * 1000,
   showArchives: true,
-  showBackButton: true, // show back button in post detail
+  showBackButton: true,
   editPost: {
     enabled: true,
     text: "Edit page",
-    url: "https://github.com/satnaing/astro-paper/edit/main/",
+    url: "https://github.com/gc1175383875/gc1175383875.github.io/edit/main/",
   },
   dynamicOgImage: true,
-  dir: "ltr", // "rtl" | "auto"
-  lang: "en", // html lang code. Set this empty and default will be "en"
-  timezone: "Asia/Bangkok", // Default global timezone (IANA format) https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
-  layoutStyle: "sidebar", // "header" | "sidebar" - choose between top header or left sidebar layout
+  dir: "ltr",
+  lang: "zh-CN",
+  timezone: "Asia/Shanghai",
+  layoutStyle: "sidebar",
 } as const;
