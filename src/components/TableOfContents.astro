@@ -1,0 +1,129 @@
+---
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<nav id="toc-wrapper" class:list={["toc-wrapper", className]} aria-label="Table of Contents">
+  <h2 class="toc-heading">Contents</h2>
+  <div id="toc" class="toc"></div>
+</nav>
+
+<style>
+  .toc-wrapper {
+    border-left: 1px solid var(--border);
+    position: sticky;
+    top: 2rem;
+    max-height: calc(100vh - 4rem);
+    overflow-y: auto;
+    padding-left: 1rem;
+    font-size: 0.875rem;
+    line-height: 1.5;
+  }
+
+  .toc-heading {
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .toc :global(ul) {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+  }
+
+  .toc :global(li) {
+    margin: 0.25rem 0;
+  }
+
+  .toc :global(a) {
+    display: block;
+    color: var(--text-muted);
+    text-decoration: none;
+    padding: 0.125rem 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: color 0.2s ease;
+  }
+
+  .toc :global(a:hover) {
+    color: var(--accent);
+  }
+
+  .toc :global(.is-active-li > a) {
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  .toc :global(.toc-list-item) {
+    position: relative;
+  }
+
+  .toc :global(.is-active-li::before) {
+    content: "";
+    position: absolute;
+    left: -1rem;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background-color: var(--accent);
+  }
+
+  .toc :global(ul ul) {
+    padding-left: 0.75rem;
+  }
+
+  @media (max-width: 1024px) {
+    .toc-wrapper {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  import tocbot from "tocbot";
+
+  function initToc() {
+    const article = document.getElementById("article");
+    const tocWrapper = document.getElementById("toc-wrapper");
+
+    if (!article || !tocWrapper) return;
+
+    const hasHeadings = article.querySelector("h2, h3, h4");
+    if (!hasHeadings) {
+      tocWrapper.style.display = "none";
+      return;
+    }
+
+    tocWrapper.style.display = "";
+
+    tocbot.init({
+      tocSelector: "#toc",
+      contentSelector: "#article",
+      headingSelector: "h2, h3, h4",
+      ignoreSelector: "[data-toc-skip]",
+      orderedList: false,
+      scrollSmooth: true,
+      scrollSmoothDuration: 200,
+      headingsOffset: 100,
+      throttleTimeout: 50,
+      collapseDepth: 3,
+    });
+  }
+
+  initToc();
+
+  document.addEventListener("astro:after-swap", () => {
+    tocbot.destroy();
+    initToc();
+  });
+
+  document.addEventListener("astro:page-load", initToc);
+</script>
