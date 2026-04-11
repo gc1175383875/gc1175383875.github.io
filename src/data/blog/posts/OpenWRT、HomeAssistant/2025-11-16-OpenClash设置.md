@@ -1,6 +1,6 @@
 ---
 author: orange
-pubDatetime: 2025-11-16T00:00:00Z
+pubDatetime: 2025-11-16
 title: OpenClash设置
 tags: [OpenWRT]
 description: OpenClash插件的详细设置说明，包括模式设置、DNS配置、订阅配置等。

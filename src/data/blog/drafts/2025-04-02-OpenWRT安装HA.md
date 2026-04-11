@@ -1,6 +1,6 @@
 ---
 author: orange
-pubDatetime: 2025-04-02T00:00:00Z
+pubDatetime: 2025-04-02
 title: OpenWRT安装HA
 draft: true
 tags: [OpenWRT, HA, Home Assistant]
