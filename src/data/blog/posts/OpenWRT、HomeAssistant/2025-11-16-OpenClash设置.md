@@ -5,13 +5,15 @@ title: OpenClash设置
 tags: [OpenWRT]
 description: OpenClash插件的详细设置说明，包括模式设置、DNS配置、订阅配置等。
 ---
-
 ## 一、插件设置
 
 ### 1. 模式设置
 
 - 使用 Meta 内核
 - 运行模式：Fake-IP(Tun混合)
+- 小闪存模式：内存不够可勾选
+  ###2.流量控制
+- 绕过指令区域IP：绕过中国大陆
 
 ### 2. 外部控制
 
